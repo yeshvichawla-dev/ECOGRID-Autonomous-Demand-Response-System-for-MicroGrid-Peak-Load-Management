@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07130f">
+
+    <title>EcoGrid | Intelligent Energy Management</title>
+
+    <meta name="description"
+        content="EcoGrid — Smart energy monitoring, digital twin visualization and intelligent energy optimization.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700;800&family=Italianno&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/dashboard/style.css">
+
+    <!-- Chart.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Three.js and matching OrbitControls version -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- EcoGrid application -->
+
+    <script defer src="/dashboard/script.js"></script>
+    
+</head>
+
+<body>
+
+    <!-- ==========================================
+         INTRODUCTION SCREEN
+    =========================================== -->
+
+    <section id="introScreen" class="intro-screen">
+
+        <div class="intro-background">
+            <div class="intro-image"></div>
+            <div class="intro-overlay"></div>
+        </div>
+
+        <div class="intro-topbar">
+            <span class="intro-brand-mark">E</span>
+            <span class="intro-brand-name">ECOGRID</span>
+
+            <span class="intro-top-label">
+                INTELLIGENT ENERGY MANAGEMENT
+            </span>
+        </div>
+
+        <div class="intro-content">
+
+            <span class="intro-eyebrow">
+                A SMARTER WAY TO LIVE
+            </span>
+
+            <h1 class="intro-title">ECOGRID</h1>
+
+            <p class="intro-tagline">
+                Powering a sustainable tomorrow.
+            </p>
+
+            <p class="intro-description">
+                An intelligent energy management platform
+                for connected residential communities.
+            </p>
+
+            <button id="enterPlatformBtn" class="intro-enter-btn" type="button">
+                <span>ENTER PLATFORM</span>
+                <span aria-hidden="true">↗</span>
+            </button>
+
+        </div>
+
+        <div class="intro-footer">
+            <span>SMART ENERGY. SMARTER COMMUNITIES.</span>
+            <span>01 / INTRODUCTION</span>
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         MAIN APPLICATION
+    =========================================== -->
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-symbol">E</div>
+
+                <div>
+                    <h2>ECOGRID</h2>
+                    <span>ENERGY INTELLIGENCE</span>
+                </div>
+            </div>
+
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <nav class="sidebar-nav">
+
+                <a href="#overview" class="active" data-section="overview">
+                    <span>▦</span>
+                    <span>Overview</span>
+                </a>
+
+                <a href="#digital-twin" data-section="digital-twin">
+                    <span>◇</span>
+                    <span>Digital Twin</span>
+                </a>
+
+                <a href="#energy" data-section="energy">
+                    <span>⌁</span>
+                    <span>Energy Analytics</span>
+                </a>
+
+                <a href="#sensors" data-section="sensors">
+                    <span>⌖</span>
+                    <span>Sensor Monitoring</span>
+                </a>
+
+                <a href="#optimization" data-section="optimization">
+                    <span>⚙</span>
+                    <span>Optimization</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-status">
+                    <span class="status-dot"></span>
+                    <span>LOCAL SYSTEM</span>
+                </div>
+
+                <span class="sidebar-version">ECOGRID PLATFORM · V1.0</span>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-content">
+
+            <!-- TOP HEADER -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+                    <span class="topbar-caption">ENERGY INTELLIGENCE PLATFORM</span>
+                    <h1>Dashboard</h1>
+                </div>
+
+                <div class="topbar-right">
+
+                    <div class="connection-indicator">
+                        <span class="status-dot" id="apiStatusDot"></span>
+                        <span id="apiStatus">Connecting to API...</span>
+                    </div>
+
+                    <div class="topbar-date" id="currentDate">
+                        LIVE MONITORING
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- ==================================
+                 OVERVIEW
+            =================================== -->
+
+            <section id="overview" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-eyebrow">SYSTEM OVERVIEW</span>
+                        <h2>Energy at a glance</h2>
+                        <p>Monitor your residential community's energy performance.</p>
+                    </div>
+                </div>
+
+
+                <!-- KPI CARDS -->
+
+                <div class="kpi-grid">
+
+                    <article class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Total Energy Consumption</span>
+                            <span class="kpi-icon">⚡</span>
+                        </div>
+
+                        <div class="kpi-value">
+                            <strong id="totalEnergy">--</strong>
+                            <span id="totalEnergyUnit">kWh</span>
+                        </div>
+
+                        <span class="kpi-description">Daily energy consumption</span>
+                    </article>
+
+
+                    <article class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Peak Hourly Demand</span>
+                            <span class="kpi-icon">⌁</span>
+                        </div>
+
+                        <div class="kpi-value">
+                            <strong id="peakDemand">--</strong>
+                            <span>kWh</span>
+                        </div>
+
+                        <span class="kpi-description">Highest hourly consumption</span>
+                    </article>
+
+
+                    <article class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Active Sensors</span>
+                            <span class="kpi-icon">◉</span>
+                        </div>
+
+                        <div class="kpi-value">
+                            <strong id="activeSensors">--</strong>
+                            <span id="sensorCount">/ 125</span>
+                        </div>
+
+                        <span class="kpi-description">Virtual energy meters</span>
+                    </article>
+
+
+                    <article class="kpi-card">
+                        <div class="kpi-header">
+                            <span>Peak Reduction</span>
+                            <span class="kpi-icon">↘</span>
+                        </div>
+
+                        <div class="kpi-value">
+                            <strong id="peakReduction">--</strong>
+                            <span>%</span>
+                        </div>
+
+                        <span class="kpi-description">Optimized peak demand</span>
+                    </article>
+
+                </div>
+
+
+                <!-- ENERGY CHARTS -->
+
+                <div class="analytics-grid">
+
+                    <article class="panel energy-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-eyebrow">ENERGY ANALYTICS</span>
+                                <h3>Hourly Energy Consumption</h3>
+                            </div>
+
+                            <span class="panel-unit">kWh</span>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="energyChart"></canvas>
+                        </div>
+
+                    </article>
+
+
+                    <article class="panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-eyebrow">ENERGY INSIGHTS</span>
+                                <h3>Consumption Summary</h3>
+                            </div>
+                        </div>
+
+                        <div class="summary-metric">
+                            <span>Peak consumption</span>
+                            <strong id="peakEnergy">-- kWh</strong>
+                        </div>
+
+                        <div class="summary-metric">
+                            <span>Peak hour</span>
+                            <strong id="peakHour">--</strong>
+                        </div>
+
+                        <div class="summary-metric">
+                            <span>Monitoring meters</span>
+                            <strong>125</strong>
+                        </div>
+
+                        <div class="summary-metric">
+                            <span>Residential buildings</span>
+                            <strong>5</strong>
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <!-- SYSTEM STATUS -->
+
+                <article class="panel system-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="section-eyebrow">SYSTEM HEALTH</span>
+                            <h3>Platform Status</h3>
+                        </div>
+
+                        <span id="systemStatus" class="system-status">
+                            INITIALIZING
+                        </span>
+                    </div>
+
+                    <div class="system-status-grid">
+
+                        <div class="system-status-item">
+                            <span class="status-dot"></span>
+                            <span>Dashboard API</span>
+                            <strong id="connectionStatus">Checking</strong>
+                        </div>
+
+                        <div class="system-status-item">
+                            <span class="status-dot"></span>
+                            <span>Energy Monitoring</span>
+                            <strong id="monitoringStatus">Checking</strong>
+                        </div>
+
+                        <div class="system-status-item">
+                            <span class="status-dot"></span>
+                            <span>Digital Twin</span>
+                            <strong id="twinStatus">Ready</strong>
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================
+                 DIGITAL TWIN
+            =================================== -->
+
+            <section id="digital-twin" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-eyebrow">3D VISUALIZATION</span>
+                        <h2>Community Digital Twin</h2>
+                        <p>Explore the residential energy ecosystem.</p>
+                    </div>
+                </div>
+
+
+                <article class="panel twin-panel">
+
+                    <div class="twin-toolbar">
+
+                        <div class="twin-scene-controls">
+                            <button id="societySceneBtn" class="scene-btn active" type="button">
+                                Existing Society
+                            </button>
+
+                            <button id="proposedSceneBtn" class="scene-btn" type="button">
+                                Proposed Integration
+                            </button>
+                        </div>
+
+                        <button id="reset3DView" class="secondary-btn" type="button">
+                            Reset View
+                        </button>
+
+                    </div>
+
+
+                    <div class="twin-viewer">
+
+                        <canvas id="society3DCanvas"></canvas>
+
+                        <div id="twinLoading" class="twin-loading">
+                            Initializing 3D Environment...
+                        </div>
+
+                        <div class="twin-viewer-label">
+                            <span class="status-dot"></span>
+                            INTERACTIVE 3D ENVIRONMENT
+                        </div>
+
+                    </div>
+
+
+                    <div class="twin-info">
+
+                        <div class="twin-object-info">
+
+                            <span class="section-eyebrow">SELECTED COMPONENT</span>
+
+                            <h3 id="twinObjectName">Select an object</h3>
+
+                            <p id="twinObjectType">
+                                Explore the community model
+                            </p>
+
+                            <p id="twinObjectDescription">
+                                Select buildings and energy infrastructure
+                                to explore their role in the ecosystem.
+                            </p>
+
+                        </div>
+
+
+                        <div class="twin-object-metrics">
+
+                            <div>
+                                <span>Energy Reading</span>
+                                <strong id="twinObjectEnergy">--</strong>
+                            </div>
+
+                            <div>
+                                <span>Component Status</span>
+                                <strong id="twinObjectStatus">--</strong>
+                            </div>
+
+                        </div>
+
+                        <div id="twinObjectDetails"></div>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================
+                 ENERGY ANALYTICS
+            =================================== -->
+
+            <section id="energy" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-eyebrow">DATA ANALYTICS</span>
+                        <h2>Energy Performance</h2>
+                        <p>Understand hourly consumption patterns.</p>
+                    </div>
+                </div>
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="section-eyebrow">OBSERVED DATA</span>
+                            <h3>Hourly Consumption Profile</h3>
+                        </div>
+
+                        <span class="panel-unit">kWh</span>
+                    </div>
+
+                    <div class="chart-container large-chart">
+                        <canvas id="forecastChart"></canvas>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================
+                 SENSOR MONITORING
+            =================================== -->
+
+            <section id="sensors" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-eyebrow">IOT MONITORING</span>
+                        <h2>Sensor Network</h2>
+                        <p>Monitor the available energy meter readings.</p>
+                    </div>
+                </div>
+
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span class="section-eyebrow">LIVE DATA</span>
+                            <h3>Sensor Readings</h3>
+                        </div>
+
+                        <span class="panel-unit">125 VIRTUAL METERS</span>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table class="sensor-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Sensor ID</th>
+                                    <th>Location</th>
+                                    <th>Type</th>
+                                    <th>Energy Reading</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="sensorTableBody">
+                                <tr>
+                                    <td colspan="5">Waiting for sensor data...</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <p class="table-note">
+                        Displayed readings represent the sensor records returned
+                        by the connected API.
+                    </p>
+
+                </article>
+
+            </section>
+
+
+            <!-- ==================================
+                 OPTIMIZATION
+            =================================== -->
+
+            <section id="optimization" class="dashboard-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="section-eyebrow">INTELLIGENT OPTIMIZATION</span>
+                        <h2>Energy Optimization</h2>
+                        <p>Compare the original and optimized demand profile.</p>
+                    </div>
+                </div>
+
+
+                <div class="optimization-grid">
+
+                    <article class="panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-eyebrow">BASELINE SCENARIO</span>
+                                <h3>Original Peak Demand</h3>
+                            </div>
+                        </div>
+
+                        <div class="optimization-value">
+                            <strong id="originalPeak">163.169</strong>
+                            <span>kWh</span>
+                        </div>
+
+                        <p>Before load optimization</p>
+
+                    </article>
+
+
+                    <article class="panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-eyebrow">OPTIMIZED SCENARIO</span>
+                                <h3>Reduced Peak Demand</h3>
+                            </div>
+                        </div>
+
+                        <div class="optimization-value">
+                            <strong id="optimizedPeak">130.535</strong>
+                            <span>kWh</span>
+                        </div>
+
+                        <p>After simulated load shifting</p>
+
+                    </article>
+
+
+                    <article class="panel optimization-highlight">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span class="section-eyebrow">OPTIMIZATION RESULT</span>
+                                <h3>Peak Reduction</h3>
+                            </div>
+                        </div>
+
+                        <div class="optimization-value">
+                            <strong id="optimizationReduction">20</strong>
+                            <span>%</span>
+                        </div>
+
+                        <p>Simulated peak demand reduction</p>
+
+                    </article>
+
+                </div>
+
+
+                <article class="panel optimization-explanation">
+
+                    <span class="section-eyebrow">OPTIMIZATION METHOD</span>
+
+                    <h3>Intelligent Load Shifting</h3>
+
+                    <p>
+                        The optimization scenario shifts selected energy demand
+                        to reduce peak-hour loading. Total daily energy
+                        consumption remains unchanged in this simulation.
+                    </p>
+
+                    <div class="summary-metric">
+                        <span>Total energy consumption</span>
+                        <strong id="optimizationTotalEnergy">2057.086 kWh</strong>
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="app-footer">
+                <span>© 2026 ECOGRID</span>
+                <span>INTELLIGENT ENERGY MANAGEMENT PLATFORM</span>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

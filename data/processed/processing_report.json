@@ -1,0 +1,26 @@
+{
+    "project": "EcoGrid",
+    "status": "success",
+    "original_records": 3000,
+    "processed_records": 3000,
+    "missing_values_before": 0,
+    "missing_values_after": 0,
+    "duplicates_found": 0,
+    "duplicates_removed": 0,
+    "invalid_timestamps": 0,
+    "outliers_detected": {
+        "voltage_V": 0,
+        "current_A": 183,
+        "power_W": 183,
+        "energy_kWh": 183,
+        "power_factor": 0
+    },
+    "building_energy_consumption": {
+        "Building_1": 411.17,
+        "Building_2": 414.52,
+        "Building_3": 408.44,
+        "Building_4": 409.13,
+        "Building_5": 413.82
+    },
+    "cleaned_dataset": "C:\\Users\\91766\\Desktop\\EcoGrid\\data\\processed\\cleaned_energy_data.csv"
+}

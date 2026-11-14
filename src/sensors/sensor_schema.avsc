@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "name": "EcoGridSensor",
+  "namespace": "com.ecogrid.sensors",
+  "fields": [
+    {"name": "society", "type": "string"},
+    {"name": "sensor_id", "type": "string"},
+    {"name": "building", "type": "string"},
+    {"name": "timestamp", "type": "string"},
+    {"name": "voltage_V", "type": "double"},
+    {"name": "current_A", "type": "double"},
+    {"name": "power_W", "type": "double"},
+    {"name": "energy_kWh", "type": "double"},
+    {"name": "power_factor", "type": "double"}
+  ]
+}

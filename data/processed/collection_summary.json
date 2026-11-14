@@ -1,0 +1,24 @@
+{
+    "project": "EcoGrid",
+    "society": "EcoGrid Green Residency",
+    "total_records": 3000,
+    "unique_sensors": 125,
+    "total_buildings": 5,
+    "missing_values": {
+        "society": 0,
+        "sensor_id": 0,
+        "building": 0,
+        "flat": 0,
+        "sensor_type": 0,
+        "timestamp": 0,
+        "voltage_V": 0,
+        "current_A": 0,
+        "power_W": 0,
+        "energy_kWh": 0,
+        "power_factor": 0
+    },
+    "total_missing_values": 0,
+    "duplicate_readings": 0,
+    "invalid_timestamps": 0,
+    "collection_status": "SUCCESS"
+}
